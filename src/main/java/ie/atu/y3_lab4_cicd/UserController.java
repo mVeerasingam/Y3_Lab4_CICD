@@ -11,17 +11,16 @@ import java.util.Map;
 @RestController
 public class UserController {
     private RegistrationServiceClient registrationServiceClient;
-
     @Autowired
     public UserController(RegistrationServiceClient registrationServiceClient){
         this.registrationServiceClient =registrationServiceClient;
     }
 
     @PostMapping("/confirm-and-register")
-    public Map<String, String> confirmAndRegister(@RequestBody UserDetails userDetails){
+    public String confirmAndRegister(@RequestBody UserDetails userDetails){
         String confirm = registrationServiceClient.someDetails(userDetails);
-        Map<String, String> responseMessage = new HashMap<>();
-        responseMessage.put("message",confirm);
+        String responseMessage = confirm + " " + userDetails.getName()
+                + " " + userDetails.getEmail();
         return responseMessage;
     }
 }
