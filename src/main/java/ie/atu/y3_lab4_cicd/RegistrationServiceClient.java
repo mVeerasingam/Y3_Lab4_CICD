@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface RegistrationServiceClient {
     @PostMapping("/confirm")
     String someDetails(@RequestBody UserDetails userDetails);
+
 }
